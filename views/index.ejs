@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #444;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+      }
+
+      section {
+        max-width: 960px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      .blog-list {
+        list-style-type: none;
+        padding: 0;
+      }
+      .blog-list li {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f4f4f4;
+        border-left: 5px solid #555;
+      }
+    </style>
+  </head>
+  <%- include('./partials/navBar.ejs') %>
+  <body>
+    <header>
+      <h1>All Blogs</h1>
+    </header>
+
+    <section>
+      <h2>Browse Our Blogs</h2>
+      <ul class="blog-list">
+        <% if (blogs.length > 0) {%> <% blogs.map((item)=>{ %>
+
+          <a href="/blogs/<%= item._id%>">
+        <li>
+          <h3><%= item.title %></h3>
+          <p><%= item.snippet %></p>
+        </li>
+      </a>
+
+        <% }) %> <%} else {%>
+        <p>No blogs available</p>
+        <%}%>
+      </ul>
+    </section>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

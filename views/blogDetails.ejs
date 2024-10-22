@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #444;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+      }
+      nav {
+        background-color: #555;
+        text-align: center;
+        padding: 10px 0;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+      section {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .author {
+        color: #888;
+        font-size: 0.9em;
+      }
+      .date {
+        color: #bbb;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+      }
+      p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+      footer {
+        background-color: #444;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+      .delete-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #d9534f; /* Bootstrap's danger color */
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+      }
+      .delete-btn:hover {
+        box-shadow: 2px 2px 5px gray;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><%= title %></h1>
+    </header>
+
+    <%- include('./partials/navBar.ejs') %>
+
+    <section>
+      <h1 id="blog-title"><%= detailBlog.title%></h1>
+      <p class="author">Written by <span id="author">Author Name</span></p>
+      <p class="date">Published on <span id="date">October 16, 2024</span></p>
+      <p id="blog-content"><%=detailBlog.body%></p>
+      <a class="delete-btn" data-doc="<%= detailBlog._id %>">delete</a>
+    </section>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+      const trashBin = document.querySelector("a.delete-btn");
+
+      trashBin.addEventListener("click", (e) => {
+        const endPoint = `/blogs/${trashBin.dataset.doc}`;
+
+            fetch(endPoint, {
+                method : 'DELETE'
+            })
+                .then((response)=>
+                    response.json()
+                )
+                .then((data)=>
+                    window.location.href = data.redirect
+                )
+                .catch((err)=>
+                    console.log(err)
+                    
+                )
+      });
+    </script>
+  </body>
+</html>

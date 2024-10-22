@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #444;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
+    
+    section {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      line-height: 1.6;
+    }
+    footer {
+      background-color: #444;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About Us</h1>
+  </header>
+
+  <%- include('./partials/navBar.ejs') %>
+
+  <section>
+    <h2>Our Mission</h2>
+    <p>We are dedicated to providing the best solutions for our clients, striving for excellence in every project we undertake.</p>
+
+    <h2>Our Team</h2>
+    <p>Our team is composed of experienced professionals who are passionate about their work. We value collaboration, creativity, and integrity in all aspects of our business.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you want to get in touch, feel free to <a href="mailto:contact@ourcompany.com">email us</a>.</p>
+  </section>
+  <%- include('./partials/footer.ejs') %>
+
+
+
+</body>
+</html>
